@@ -11,6 +11,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { Credential } from '../../shared/models';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login',
@@ -21,12 +23,14 @@ import { MatButtonModule } from '@angular/material/button';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
+    CommonModule
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
 export class LoginComponent {
   authService = inject(AuthService);
+  router = inject(Router);
 
   loginForm = new FormGroup({
     username: new FormControl('', Validators.required),
@@ -38,13 +42,13 @@ export class LoginComponent {
   constructor(private snackBar: MatSnackBar) {}
 
   onLogin() {
-    console.log('on login');
     if (this.loginForm.valid) {
-      console.log('esta validado');
       this.authService
         .login(this.loginForm.value as Credential)
         .subscribe((response) => {
           if (response.status === 'success') {
+
+            this.router.navigateByUrl('');
             this.snackBar.open('Usuario Logueado con exito.', 'Cerrar', {
               duration: 5000,
               verticalPosition: 'bottom',

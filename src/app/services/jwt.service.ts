@@ -48,8 +48,8 @@ export class JwtService {
   }
 
   clear(): void {
-    window.localStorage.removeItem('refresh_token');
-    window.localStorage.removeItem('access_token');
+    localStorage.removeItem('refresh_token');
+    localStorage.removeItem('access_token');
     this.jwtToken.set(null);
     this.jwtRefreshToken.set(null);
   }
