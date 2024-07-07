@@ -20,13 +20,27 @@
       <button
         type="button"
         aria-label="Toggle sidenav"
-        mat-icon-button
+        mat-icon-buttonF
         (click)="drawer.toggle()"
       >
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       }
       <span>ciuvat-frontend</span>
+      <span class="spacer"></span>
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>person</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>
+          <mat-icon>logout</mat-icon>
+          <span>logout</span>
+        </button>
+        <button mat-menu-item (click)="onChangePassword()">
+          <mat-icon>password</mat-icon>
+          <span>Cambiar Password</span>
+        </button>
+      </mat-menu>
     </mat-toolbar>
     <!-- Add Content Here -->
     <router-outlet />

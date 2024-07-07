@@ -5,7 +5,7 @@ import { catchError, map, of } from 'rxjs';
 import { Router } from '@angular/router';
 
 export const authGuard: CanActivateFn = (route, state) => {
-  const token = inject(JwtService).jwtToken();
+  const token = inject(JwtService).getAccessToken();
   const router = inject(Router);
   const authService = inject(AuthService);
   if (token != null) {

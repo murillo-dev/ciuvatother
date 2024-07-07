@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 import { pagesRoutes } from './pages/pages.routes';
 import { authGuard } from './shared/guards/auth.guard';
-import { isAuthenticatedGuard } from './shared/guards/is-authenticated.guard';
+// import { isAuthenticatedGuard } from './shared/guards/is-authenticated.guard';
 
 
 export const routes: Routes = [

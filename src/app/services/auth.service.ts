@@ -18,19 +18,6 @@ export class AuthService {
 
   public isAuthenticated = this.currentUser() != null;
 
-  // constructor() {
-  //   if(this.jwtService.jwtToken()) {
-  //     this.http.get<User>(`${this.url}/auth/get-user`).subscribe((user) => {
-  //       if (user) {
-  //         this.currentUser.set(user);
-  //         this.router.navigate(['']);
-  //       } else {
-  //         this.router.navigate(['login']);
-  //       }
-  //     });
-  //   }
-  // }
-
   login(credential: Credential) {
     return this.http
       .post<LoginResponse>(`${this.url}/auth/login`, credential)
@@ -54,7 +41,6 @@ export class AuthService {
   }
 
   isAuthenticatedFn(): Observable<boolean> {
-    console.log('isAuthenticatedFn');
     if (this.jwtService.jwtToken() !== null) {
       return this.http.get<User>(`${this.url}/auth/get-user`).pipe(
         map((reponse: User) => {
@@ -72,9 +58,28 @@ export class AuthService {
           return of(false);
         })
       );
-    }else {
+    } else {
       this.currentUser.set(null);
       return of(true);
     }
+  }
+
+  changePassword(
+    oldPassword: string,
+    newPassword: string,
+    confirmPasswword: string
+  ) {
+    return this.http
+      .post<LoginResponse>(`${this.url}/auth/change-password`, {
+        old_password: oldPassword,
+        new_password: newPassword,
+        confirm_password: confirmPasswword,
+      })
+      .pipe(
+        tap((response: LoginResponse) => {
+          this.jwtService.setAccessToken(response.access_token);
+          this.currentUser.set(response.data);
+        })
+      );
   }
 }
