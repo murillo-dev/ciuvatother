@@ -1,0 +1,19 @@
+.mat-mdc-card {
+  width: 100%;
+  max-width: 400px;
+  margin: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #c2c3f3;
+}
+.mdc-card:hover {
+  cursor: pointer;
+  background-color: #c988da;
+}
+
+.add-button {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+}
