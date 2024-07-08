@@ -10,7 +10,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
-import { RouterOutlet } from '@angular/router';
+import { RouterLink, RouterOutlet } from '@angular/router';
 import { AuthService } from '../services';
 import { ChangePasswordModalComponent } from './change-password-modal/change-password-modal.component';
 
@@ -29,6 +29,7 @@ import { ChangePasswordModalComponent } from './change-password-modal/change-pas
     AsyncPipe,
     CommonModule,
     MatMenuModule,
+    RouterLink,
   ],
 })
 export class PagesComponent {
