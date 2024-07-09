@@ -3,7 +3,7 @@ import { UserService } from '../../services/user/user.service';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { map, Observable, shareReplay } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -38,7 +38,6 @@ export class UserComponent {
     ])
     .pipe(
       map((result) => {
-        console.log(result.breakpoints);
         if (result.breakpoints[Breakpoints.XSmall]) {
           return 1;
         } else if (result.breakpoints[Breakpoints.Small]) {
@@ -48,14 +47,10 @@ export class UserComponent {
         } else {
           return 4;
         }
-      }, shareReplay())
+      })
     );
 
   addUser() {
-    const dialogRef =this.dialog.open(UserModalComponent, {
-      data: {
-        action: 'new',
-      }
-    })
+    const dialogRef = this.dialog.open(UserModalComponent);
   }
 }
